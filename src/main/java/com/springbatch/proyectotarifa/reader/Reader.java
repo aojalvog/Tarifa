@@ -4,9 +4,11 @@ import javax.sql.DataSource;
 
 import org.springframework.batch.item.database.JdbcCursorItemReader;
 import org.springframework.context.annotation.Bean;
+import org.springframework.stereotype.Component;
 
 import com.springbatch.proyectotarifa.model.Tarifas;
 
+@Component
 public class Reader {
 
 	@Bean

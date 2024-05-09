@@ -10,15 +10,12 @@ import org.springframework.stereotype.Component;
 
 import com.springbatch.proyectotarifa.model.Tarifas;
 
-import lombok.extern.slf4j.Slf4j;
-
 @Component
-@Slf4j
+
 public class Writer {
 
 	@Bean
 	FlatFileItemWriter<Tarifas> itemWriter() {
-		log.info("Entra writer");
 		BeanWrapperFieldExtractor<Tarifas> fieldExtractor = new BeanWrapperFieldExtractor<>();
 		fieldExtractor.setNames(new String[] { "id", "nombre", "precio" });
 		fieldExtractor.afterPropertiesSet();
@@ -27,7 +24,6 @@ public class Writer {
 		lineAggregator.setDelimiter(";");
 		lineAggregator.setFieldExtractor(fieldExtractor);
 
-		log.info("Sale writer");
 		return new FlatFileItemWriterBuilder<Tarifas>().name("outputTarifas.csv")
 				.resource(new PathResource("outputTarifas.csv")).lineAggregator(lineAggregator).build();
 	}
