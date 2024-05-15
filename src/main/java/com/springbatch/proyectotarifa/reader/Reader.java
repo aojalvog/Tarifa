@@ -8,12 +8,15 @@ import org.springframework.stereotype.Component;
 
 import com.springbatch.proyectotarifa.model.Tarifas;
 
+import lombok.extern.slf4j.Slf4j;
+
 /**
  * 
  * Esta clase representa un componente de Spring que proporciona funcionalidad
  * para leer objetos de tipo Tarifas desde una base de datos utilizando JDBC.
  */
 @Component
+@Slf4j
 public class Reader {
 
 	/**
@@ -28,7 +31,7 @@ public class Reader {
 	 */
 
 	@Bean
-	JdbcCursorItemReader<Tarifas> itemReader(DataSource dataSource) {
+	public JdbcCursorItemReader<Tarifas> itemReader(DataSource dataSource) {
 		JdbcCursorItemReader<Tarifas> itemReader = new JdbcCursorItemReader<>();
 		itemReader.setName("tarifasItemReader");
 		itemReader.setDataSource(dataSource);
@@ -40,6 +43,7 @@ public class Reader {
 			tarifas.setPrecio(rs.getDouble("PRECIO"));
 			return tarifas;
 		});
+		log.info("ARCHIVO LEÍDO CORRECTAMENTE");
 		return itemReader;
 	}
 }

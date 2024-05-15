@@ -20,6 +20,7 @@ public class Processor {
 
 	@Bean
 	TarifasProcessor tarifasProcessor() {
+
 		return new TarifasProcessor();
 	}
 }

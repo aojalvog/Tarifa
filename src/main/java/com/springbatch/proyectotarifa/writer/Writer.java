@@ -10,6 +10,8 @@ import org.springframework.stereotype.Component;
 
 import com.springbatch.proyectotarifa.model.Tarifas;
 
+import lombok.extern.slf4j.Slf4j;
+
 /**
  * 
  * Esta clase representa un componente de Spring que proporciona funcionalidad
@@ -17,7 +19,7 @@ import com.springbatch.proyectotarifa.model.Tarifas;
  * FlatFileItemWriter para escribir los objetos Tarifas en un archivo CSV.
  */
 @Component
-
+@Slf4j
 public class Writer {
 	/**
 	 * Método que configura y devuelve un FlatFileItemWriter para escribir objetos
@@ -40,8 +42,11 @@ public class Writer {
 		lineAggregator.setDelimiter(";");
 		lineAggregator.setFieldExtractor(fieldExtractor);
 
-		return new FlatFileItemWriterBuilder<Tarifas>().name("outputTarifas.csv")
-				.resource(new PathResource("outputTarifas.csv")).lineAggregator(lineAggregator).build();
+		log.info("ARCHIVO ESCRITO CORRECTAMENTE");
+
+		return new FlatFileItemWriterBuilder<Tarifas>().name("outputTarifas.csv").resource(new PathResource(
+				"C:\\Users\\6003036\\Desktop\\Caliope\\ficheros\\AutomatizacionCaliope\\ficherosSalida\\outputTarifas.csv"))
+				.lineAggregator(lineAggregator).build();
 	}
 
 }
