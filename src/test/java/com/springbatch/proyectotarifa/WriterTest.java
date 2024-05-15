@@ -28,14 +28,13 @@ class WriterTest {
 	@Test
 	void writerTest() throws IOException {
 
-		PathResource fichero = new PathResource(
-				"C:\\Users\\6003036\\Desktop\\Caliope\\ficheros\\AutomatizacionCaliope\\ficherosSalida\\outputTarifas.csv");
+		PathResource fichero = new PathResource("ficherosSalida\\outputTarifas.csv");
 
 		fichero.getFile().delete();
 
 		flatFileItemWriter.open(new ExecutionContext());
 		try {
-			flatFileItemWriter.write(new Chunk<Tarifas>(new Tarifas(1L, "name1", 9.99)));
+			flatFileItemWriter.write(new Chunk<Tarifas>(new Tarifas(1L, "name1", 9.99, 21.00)));
 
 		} catch (Exception e) {
 			e.printStackTrace();
