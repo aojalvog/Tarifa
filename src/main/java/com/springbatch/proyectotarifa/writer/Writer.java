@@ -35,7 +35,7 @@ public class Writer {
 	@Bean
 	FlatFileItemWriter<Tarifas> itemWriter() {
 		BeanWrapperFieldExtractor<Tarifas> fieldExtractor = new BeanWrapperFieldExtractor<>();
-		fieldExtractor.setNames(new String[] { "id", "nombre", "precio" });
+		fieldExtractor.setNames(new String[] { "id", "nombre", "precio", "iva" });
 		fieldExtractor.afterPropertiesSet();
 
 		DelimitedLineAggregator<Tarifas> lineAggregator = new DelimitedLineAggregator<>();
@@ -44,9 +44,8 @@ public class Writer {
 
 		log.info("ARCHIVO ESCRITO CORRECTAMENTE");
 
-		return new FlatFileItemWriterBuilder<Tarifas>().name("outputTarifas.csv").resource(new PathResource(
-				"C:\\Users\\6003036\\Desktop\\Caliope\\ficheros\\AutomatizacionCaliope\\ficherosSalida\\outputTarifas.csv"))
-				.lineAggregator(lineAggregator).build();
+		return new FlatFileItemWriterBuilder<Tarifas>().name("outputTarifas.csv")
+				.resource(new PathResource("outputTarifas.csv")).lineAggregator(lineAggregator).build();
 	}
 
 }

@@ -28,8 +28,8 @@ public class Reader {
 	 *                   datos.
 	 * @return Un JdbcCursorItemReader configurado para leer objetos Tarifas desde
 	 *         una base de datos.
-
-
+	 * 
+	 * 
 	 */
 
 	@Bean
@@ -43,6 +43,7 @@ public class Reader {
 			tarifas.setId(rs.getLong("ID"));
 			tarifas.setNombre(rs.getString("NOMBRE"));
 			tarifas.setPrecio(rs.getDouble("PRECIO"));
+			tarifas.setIva(rs.getDouble("IVA"));
 			return tarifas;
 		});
 		log.info("ARCHIVO LEÍDO CORRECTAMENTE");
